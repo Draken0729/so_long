@@ -6,11 +6,11 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:51:14 by qbaret            #+#    #+#             */
-/*   Updated: 2025/02/18 10:32:24 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/19 12:02:09 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../so_long.h"
 
 int	ft_putstr(char *s)
 {
@@ -38,19 +38,6 @@ int	ft_putunbr(unsigned int n)
 	i++;
 	return (i);
 }
-
-size_t	ft_strlen(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		i++;
-	}
-	return (i);
-}
-
 static int	ft_handle(char c, va_list args)
 {
 	if (c == 'c')

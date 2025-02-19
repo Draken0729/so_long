@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 11:40:46 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/18 11:52:47 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/19 17:06:10 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,23 @@ void flood_fill(char **map, int x, int y, char **visited)
 
 void check_accessibility(char **map)
 {
-    int x, y;
+    int x;
+    int y;
     int width = ft_strlen(map[0]);
     int height = 0;
     char **visited;
     int player_x = -1, player_y = -1;
-
+    
     while (map[height])
         height++;
 
     visited = malloc(sizeof(char *) * (height + 1));
     if (!visited)
         error_exit("Erreur d'allocation mémoire.");
+    
+    y = 0;
     while(y < height)
     {
-		y = 0;
         visited[y] = ft_strdup(map[y]);
         if (!visited[y])
             error_exit("Erreur d'allocation mémoire.");
@@ -49,12 +51,12 @@ void check_accessibility(char **map)
     }
     visited[height] = NULL;
 
+    y = 0;
     while(y < height)
     {
-		y = 0;
+        x = 0;
         while(x < width)
         {
-			x = 0;
             if (map[y][x] == 'P')
             {
                 player_x = x;
@@ -63,18 +65,22 @@ void check_accessibility(char **map)
             }
 			x++;
         }
-		y++;
-        if (player_x != -1) break;
+        if (player_x != -1)
+            break;
+        y++;
     }
 
     flood_fill(map, player_x, player_y, visited);
 
+    if (player_x == -1 || player_y == -1)
+    error_exit("Le joueur (P) est introuvable sur la carte.");
+    
+    y = 0;
     while(y < height)
     {
-		y = 0;
+        x = 0;
         while(x < width)
         {
-			x = 0;
             if ((map[y][x] == 'C' || map[y][x] == 'E') && visited[y][x] != '1')
                 error_exit("Tous les collectibles et la sortie ne sont pas accessibles.");
 			x++;
@@ -82,9 +88,9 @@ void check_accessibility(char **map)
 		y++;
     }
 
+    y = 0;
     while(y < height)
 	{
-		y = 0;
         free(visited[y]);
 		y++;
 	}
@@ -99,10 +105,6 @@ void check_mlx(t_game *game)
     game->win = mlx_new_window(game->mlx, game->map_width * TILE_SIZE, game->map_height * TILE_SIZE, "so_long");
     if (!game->win)
         error_exit("Erreur lors de la création de la fenêtre.");
-
-    game->textures.player = mlx_xpm_file_to_image(game->mlx, "player.xpm", &game->img_width, &game->img_height);
-    if (!game->textures.player)
-        error_exit("Erreur lors du chargement de l'image du joueur.");
 }
 void free_map(char **map)
 {

@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:51:18 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/18 14:46:41 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/19 17:00:35 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 # define WIDTH 1000
 # define HEIGHT 750
 
+#ifndef TILE_SIZE
+# define TILE_SIZE 32
+#endif
+
+# include "GNL/get_next_line.h"
 # include "ft_printf/ft_printf.h"
 # include "libft/libft.h"
 # include "minilibx/mlx.h"
@@ -29,15 +34,32 @@
 
 typedef struct s_game
 {
-    void    *map;
+    void    *img;
     void    *mlx;
     void    *win;
-	t_img	*img;
-	
-}    t_game;
+    char    **map; // ✅ Ajoute ceci pour stocker la carte
+    int     map_width;
+    int     map_height;
 
-int             loop_hook(t_game *game);
-void            read_map(char *file);
+    int     player_x;
+    int     player_y;
+    int     collectibles;
+    
+    struct s_textures
+    {
+        void *wall;
+        void *floor;
+        void *player;
+        void *collectible;
+        void *exit;
+    } textures;
+} t_game;
+
+int             loop_hook(void *param);
+void            close_game(t_game *game);
+int             close_game_hook(void *param);
+int             key_hook(int keycode, t_game *game);
+char            **read_map(char *filename, t_game *game);
 int				ft_putstr(char *s);
 int				ft_putnbr(int n);
 int				ft_putchar(char c);

@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 10:29:37 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/18 11:49:30 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/19 16:09:57 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void error_map(char **map)
 	int exit_count;
 	int collect_count;
 
-	int player_count = 0;
-	int exit_count = 0;
-	int collect_count = 0;
+	player_count = 0;
+	exit_count = 0;
+	collect_count = 0;
 
 	if (!map)
 		error_exit("Carte non valide.");
@@ -77,16 +77,18 @@ void error_map(char **map)
 }
 void check_walls(char **map)
 {
-    int x, y;
+    int x; 
+	int y;
     int width = ft_strlen(map[0]);
     int height = 0;
-
+	
+	x = 0;
+	y = 0;
     while (map[height])
         height++;
 
     while(x < width)
     {
-		x = 0;
         if (map[0][x] != '1' || map[height - 1][x] != '1')
             error_exit("La carte n'est pas entourée de murs.");
 		x++;
@@ -94,7 +96,6 @@ void check_walls(char **map)
 
     while(y < height)
     {
-		y = 0;
         if (map[y][0] != '1' || map[y][width - 1] != '1')
             error_exit("La carte n'est pas entourée de murs.");
 		y++;

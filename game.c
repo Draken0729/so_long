@@ -6,11 +6,21 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 11:17:22 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/18 14:07:29 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/19 11:47:13 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int loop_hook(void *param)
+{
+    t_game *game;
+
+    game = (t_game *)param;  // ✅ Convertit param en t_game *
+    render_map(game);        // ✅ Rafraîchit l'affichage
+    return (0);
+}
+
 
 int handle_keypress(int keycode, t_game *game)
 {

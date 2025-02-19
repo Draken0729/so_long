@@ -6,21 +6,47 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:32:03 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/18 14:41:20 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/19 16:59:26 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void read_map(char *file)
+char **read_map(char *filename, t_game *game)
 {
-    int fd = open(file, O_RDONLY);
-    char buffer[1024];
-    int bytes = read(fd, buffer, 1023);
-    buffer[bytes] = '\0';
-    printf("%s\n", buffer);
+    int count_height;
+    int fd;
+    char *line;
+    char **map;
+    char *temp;
+    
+    count_height = 0;
+    fd = open(filename, O_RDONLY);
+    if (fd == -1)
+        error_exit("Impossible d'ouvrir le fichier de la carte.");
+
+    map = NULL;
+    temp = NULL;
+    while ((line = get_next_line(fd)) != NULL)
+    {
+        if (line[0] == '\n') // Vérifie si une ligne vide est présente
+            error_exit("Erreur : La carte contient une ligne vide.");
+
+        temp = ft_strjoin(temp, line); // Concatène les lignes lues
+        game->map_width = ft_strlen(line);
+        free(line);
+        count_height++;
+    }
+    game->map_height = count_height;
+
     close(fd);
+    if (!temp)
+        error_exit("Erreur : La carte est vide.");
+    map = ft_split(temp, '\n'); // Transforme en tableau de lignes
+    free(temp);
+    return (map);
 }
+
 void load_textures(t_game *game)
 {
     int width;

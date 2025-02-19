@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:57:13 by qbaret            #+#    #+#             */
-/*   Updated: 2025/02/18 14:45:58 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/19 11:50:01 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ unsigned int	ft_printhex_maj(unsigned int nombre);
 int				ft_print_pointer(void *ptr);
 int				ft_putunbr(unsigned int n);
 int				ft_printf(const char *format, ...);
+size_t			ft_strlen(char *s);
 
 #endif
