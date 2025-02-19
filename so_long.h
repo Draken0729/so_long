@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:51:18 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/19 17:00:35 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/19 17:18:14 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define HEIGHT 750
 
 #ifndef TILE_SIZE
-# define TILE_SIZE 32
+# define TILE_SIZE 64
 #endif
 
 # include "GNL/get_next_line.h"
