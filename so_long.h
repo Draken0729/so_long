@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:51:18 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/19 17:18:14 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/20 16:08:48 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,17 @@ typedef struct s_game
     void    *img;
     void    *mlx;
     void    *win;
-    char    **map; // ✅ Ajoute ceci pour stocker la carte
+    char    **map;
     int     map_width;
     int     map_height;
-
+    
     int     player_x;
     int     player_y;
     int     collectibles;
+    int     collected;
+    int     moves;
+    int     exit_x;
+    int     exit_y;
     
     struct s_textures
     {
@@ -81,6 +85,8 @@ void            error_exit(char *message);
 void            error_prog(int argc, char *filename);
 void            error_map(char **map);
 void            check_walls(char **map);
+void            find_player_position(t_game *game);
+void            count_collectibles(t_game *game);
 
 
 #endif

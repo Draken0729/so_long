@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 11:40:46 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/19 17:06:10 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/20 15:09:45 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ void check_accessibility(char **map)
 
     visited = malloc(sizeof(char *) * (height + 1));
     if (!visited)
-        error_exit("Erreur d'allocation mémoire.");
+        error_exit("Memory allocation error.");
     
     y = 0;
     while(y < height)
     {
         visited[y] = ft_strdup(map[y]);
         if (!visited[y])
-            error_exit("Erreur d'allocation mémoire.");
+            error_exit("Memory allocation error.");
 		y++;
     }
     visited[height] = NULL;
@@ -73,7 +73,7 @@ void check_accessibility(char **map)
     flood_fill(map, player_x, player_y, visited);
 
     if (player_x == -1 || player_y == -1)
-    error_exit("Le joueur (P) est introuvable sur la carte.");
+    error_exit("Player (P) is not found on the map.");
     
     y = 0;
     while(y < height)
@@ -82,7 +82,7 @@ void check_accessibility(char **map)
         while(x < width)
         {
             if ((map[y][x] == 'C' || map[y][x] == 'E') && visited[y][x] != '1')
-                error_exit("Tous les collectibles et la sortie ne sont pas accessibles.");
+                error_exit("Not all collectibles and the exit are accessible.");
 			x++;
         }
 		y++;
@@ -100,11 +100,11 @@ void check_mlx(t_game *game)
 {
     game->mlx = mlx_init();
     if (!game->mlx)
-        error_exit("Erreur lors de l'initialisation de la MLX.");
+        error_exit("Error initializing MLX.");
 
     game->win = mlx_new_window(game->mlx, game->map_width * TILE_SIZE, game->map_height * TILE_SIZE, "so_long");
     if (!game->win)
-        error_exit("Erreur lors de la création de la fenêtre.");
+        error_exit("Error creating the window.");
 }
 void free_map(char **map)
 {
