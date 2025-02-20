@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 14:12:18 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/20 16:09:32 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/20 19:11:54 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 
 void close_game(t_game *game)
 {
+    mlx_destroy_image(game->mlx, game->textures.floor);
+    mlx_destroy_image(game->mlx, game->textures.player);
+    mlx_destroy_image(game->mlx, game->textures.wall);
+    mlx_destroy_image(game->mlx, game->textures.exit);
+    mlx_destroy_image(game->mlx, game->textures.collectible);
     mlx_destroy_window(game->mlx, game->win);
     mlx_destroy_display(game->mlx);
-    free(game->map);
+    free_map(game->map);
     free(game->mlx);
     exit(0);
 }

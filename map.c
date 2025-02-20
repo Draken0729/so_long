@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:32:03 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/20 16:19:38 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/20 19:02:05 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ char **read_map(char *filename, t_game *game)
     {
         if (line[0] == '\n')
             error_exit("Error: The card contains a blank line.");
-
         temp = ft_strjoin(temp, line);
         game->map_width = ft_strlen(line);
         free(line);

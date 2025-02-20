@@ -6,11 +6,11 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:51:14 by qbaret            #+#    #+#             */
-/*   Updated: 2025/02/19 12:02:09 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/20 18:16:40 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "ft_printf.h"
 
 int	ft_putstr(char *s)
 {
@@ -59,7 +59,7 @@ static int	ft_handle(char c, va_list args)
 	return (0);
 }
 
-int	ft_printf(const char *format, ...)
+int	ft_printf(char *format, ...)
 {
 	va_list	args;
 	int		count;

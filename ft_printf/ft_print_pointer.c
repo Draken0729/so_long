@@ -6,11 +6,11 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:42:34 by qbaret            #+#    #+#             */
-/*   Updated: 2025/02/19 11:08:31 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/20 18:07:42 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "ft_printf.h"
 
 static int	print_hex(unsigned long nombre)
 {

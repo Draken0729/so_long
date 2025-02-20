@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 12:51:18 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/20 16:08:48 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/20 18:47:15 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@
 
 typedef struct s_game
 {
-    void    *img;
     void    *mlx;
     void    *win;
     char    **map;
@@ -71,7 +70,7 @@ unsigned int	ft_printhex_min(unsigned int nombre);
 unsigned int	ft_printhex_maj(unsigned int nombre);
 int				ft_print_pointer(void *ptr);
 int				ft_putunbr(unsigned int n);
-int				ft_printf(const char *format, ...);
+int				ft_printf(char *format, ...);
 void            render_map(t_game *game);
 void            load_textures(t_game *game);
 int             handle_keypress(int keycode, t_game *game);
@@ -87,6 +86,8 @@ void            error_map(char **map);
 void            check_walls(char **map);
 void            find_player_position(t_game *game);
 void            count_collectibles(t_game *game);
+void            handle_movement(t_game *game, int new_x, int new_y);
+void            update_map(t_game *game, int new_x, int new_y);
 
 
 #endif

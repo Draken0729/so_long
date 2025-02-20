@@ -6,11 +6,11 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 15:38:58 by qbaret            #+#    #+#             */
-/*   Updated: 2025/02/19 11:08:19 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/20 18:07:33 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "ft_printf.h"
 
 int	ft_putnbr(int n)
 {

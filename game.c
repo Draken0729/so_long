@@ -6,7 +6,7 @@
 /*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 11:17:22 by quentin           #+#    #+#             */
-/*   Updated: 2025/02/20 16:32:15 by quentin          ###   ########.fr       */
+/*   Updated: 2025/02/20 19:13:43 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,8 @@ int handle_keypress(int keycode, t_game *game)
 
     return (0);
 }
-void move_player(t_game *game, int dx, int dy)
+void handle_movement(t_game *game, int new_x, int new_y)
 {
-    int new_x = game->player_x + dx;
-    int new_y = game->player_y + dy;
-
     if (game->map[new_y][new_x] == '1')
         return;
 
@@ -59,7 +56,7 @@ void move_player(t_game *game, int dx, int dy)
         if (game->collected == game->collectibles)
         {
             ft_printf("Congratulations! You win!\n");
-            free_game(game);
+            close_game(game);
             exit(0);
         }
         else
@@ -68,6 +65,11 @@ void move_player(t_game *game, int dx, int dy)
         }
     }
 
+    update_map(game, new_x, new_y);
+}
+
+void update_map(t_game *game, int new_x, int new_y)
+{
     if (game->map[game->player_y][game->player_x] == 'P' && game->exit_x == game->player_x && game->exit_y == game->player_y)
         game->map[game->player_y][game->player_x] = 'E';
     else
@@ -76,12 +78,17 @@ void move_player(t_game *game, int dx, int dy)
     game->map[new_y][new_x] = 'P';
     game->player_x = new_x;
     game->player_y = new_y;
-
     game->moves++;
 
     ft_printf("%d\n", game->moves);
-
     render_map(game);
+}
+
+void move_player(t_game *game, int dx, int dy)
+{
+    int new_x = game->player_x + dx;
+    int new_y = game->player_y + dy;
+    handle_movement(game, new_x, new_y);
 }
 
 
